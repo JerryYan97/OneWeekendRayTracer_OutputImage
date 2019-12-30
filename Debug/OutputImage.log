@@ -1,0 +1,4 @@
+﻿  main.cpp
+d:\jiarui yan\master degree project\one_weekend_raytracer\outputanimage\outputimage\outputimage\main.cpp(5): warning C4326: return type of 'main' should be 'int' instead of 'void'
+d:\jiarui yan\master degree project\one_weekend_raytracer\outputanimage\outputimage\outputimage\main.cpp(17): warning C4305: 'initializing': truncation from 'double' to 'float'
+  OutputImage.vcxproj -> D:\Jiarui Yan\Master Degree Project\One_Weekend_Raytracer\OutputAnImage\OutputImage\OutputImage\Debug\OutputImage.exe
