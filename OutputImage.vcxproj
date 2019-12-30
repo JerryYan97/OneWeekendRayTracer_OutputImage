@@ -72,15 +72,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>D:\Jiarui Yan\Master Degree Project\One_Weekend_Raytracer\OutputAnImage\OutputImage\OutputImage\3rdparty\eigen-3.3.7\Eigen;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>D:\Jiarui Yan\Master Degree Project\One_Weekend_Raytracer\OutputAnImage\OutputImage\OutputImage\3rdparty\eigen-3.3.7\Eigen;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>D:\Jiarui Yan\Master Degree Project\One_Weekend_Raytracer\OutputAnImage\OutputImage\OutputImage\3rdparty\eigen-3.3.7\Eigen;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>D:\Jiarui Yan\Master Degree Project\One_Weekend_Raytracer\OutputAnImage\OutputImage\OutputImage\3rdparty\eigen-3.3.7\Eigen;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

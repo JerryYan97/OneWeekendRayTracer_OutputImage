@@ -1,5 +1,10 @@
 #include <iostream>
 #include <fstream>
+#include "3rdparty/eigen-3.3.7/Eigen/Dense"
+
+using Eigen::MatrixXd;
+using Eigen::Vector3d;
+using namespace std;
 
 void main() 
 {
@@ -12,12 +17,10 @@ void main()
 	{
 		for (int column = 0; column < nx; column++)
 		{
-			float r = float(column) / float(nx);
-			float g = float(row) / float(ny);
-			float b = 0.2;
-			int ir = int(255.99 * r);
-			int ig = int(255.99 * g);
-			int ib = int(255.99 * b);
+			Vector3d col(float(column) / float(nx), float(row) / float(ny), 0.2);
+			int ir = int(255.99 * col(0));
+			int ig = int(255.99 * col(1));
+			int ib = int(255.99 * col(2));
 			outputFile << ir << " " << ig << " " << ib << "\n";
 		}
 	}
