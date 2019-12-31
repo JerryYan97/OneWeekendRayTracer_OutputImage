@@ -1,11 +1,3 @@
-﻿  hittable.cpp
-c:\jiaruiyan\master degree projects\oneweekendraytracer\outputimage\hittable.cpp(8): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\jiaruiyan\master degree projects\oneweekendraytracer\outputimage\hittable.cpp(9): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\jiaruiyan\master degree projects\oneweekendraytracer\outputimage\hittable.cpp(10): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\jiaruiyan\master degree projects\oneweekendraytracer\outputimage\hittable.cpp(14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\jiaruiyan\master degree projects\oneweekendraytracer\outputimage\hittable.cpp(22): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\jiaruiyan\master degree projects\oneweekendraytracer\outputimage\hittable.cpp(42): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  main.cpp
-c:\jiaruiyan\master degree projects\oneweekendraytracer\outputimage\main.cpp(12): warning C4326: return type of 'main' should be 'int' instead of 'void'
-  Generating Code...
+﻿  main.cpp
+c:\jiaruiyan\master degree projects\oneweekendraytracer\outputimage\main.cpp(18): warning C4326: return type of 'main' should be 'int' instead of 'void'
   OutputImage.vcxproj -> C:\JiaruiYan\Master Degree Projects\OneWeekendRaytracer\OutputImage\Debug\OutputImage.exe

@@ -1,12 +1,20 @@
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
 #include "ray.h"
 #include "hittable.h"
 #include <list>
+#include "camera.h"
+
 
 using Eigen::MatrixXd;
 using Eigen::Vector3d;
 using namespace std;
+
+inline double random_double()
+{
+	return rand() / (RAND_MAX + 1.0);
+}
 
 void main()
 {
@@ -14,6 +22,7 @@ void main()
 	outputFile.open("HelloWorld.ppm");
 	int nx = 200;
 	int ny = 100;
+	int ns = 100;
 	outputFile << "P3\n" << nx << " " << ny << "\n255\n";
 
 	Vector3d lower_left_corner(-2.0, -1.0, -1.0);
@@ -25,6 +34,7 @@ void main()
 	sphere s2 = sphere(Vector3d(0, -100.5, -1), 100);
 	list<hittable*> objList = { &s1, &s2 };
 	hittable_list world = hittable_list(objList, objList.size());
+	camera cam;
 
 	for (int rowIdx = ny - 1; rowIdx >= 0; rowIdx--)
 	{
@@ -38,9 +48,18 @@ void main()
 			// and then create a ray for it.
 			// We can conclude from the data format of origin and pointing place
 			// that they are in the world coordinate.
-			ray r(origin, lower_left_corner + u * horizontal + v * vertical);
+			// ray r(origin, lower_left_corner + u * horizontal + v * vertical);
 
-			Vector3d col = color(r, &world);
+			// Vector3d col = color(r, &world);
+			Vector3d col(0, 0, 0);
+			for (int s = 0; s < ns; s++)
+			{
+				float u = float(columnIdx + random_double()) / float(nx);
+				float v = float(rowIdx + random_double()) / float(ny);
+				ray r = cam.get_ray(u, v);
+				col += color(r, &world);
+			}
+			col /= float(ns);
 
 			int ir = int(255.99 * col(0));
 			int ig = int(255.99 * col(1));

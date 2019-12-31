@@ -147,11 +147,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="camera.cpp" />
     <ClCompile Include="hittable.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ray.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="camera.h" />
     <ClInclude Include="hittable.h" />
     <ClInclude Include="ray.h" />
   </ItemGroup>
