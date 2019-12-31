@@ -1,3 +1,5 @@
 ﻿  main.cpp
-d:\jiarui yan\master degree project\one_weekend_raytracer\outputanimage\outputimage\outputimage\main.cpp(10): warning C4326: return type of 'main' should be 'int' instead of 'void'
+d:\jiarui yan\master degree project\one_weekend_raytracer\outputanimage\outputimage\outputimage\ray.h(24): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+d:\jiarui yan\master degree project\one_weekend_raytracer\outputanimage\outputimage\outputimage\main.cpp(11): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  LINK : D:\Jiarui Yan\Master Degree Project\One_Weekend_Raytracer\OutputAnImage\OutputImage\OutputImage\Debug\OutputImage.exe not found or not built by the last incremental link; performing full link
   OutputImage.vcxproj -> D:\Jiarui Yan\Master Degree Project\One_Weekend_Raytracer\OutputAnImage\OutputImage\OutputImage\Debug\OutputImage.exe
