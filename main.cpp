@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include "ray.h"
+#include "hittable.h"
+#include <list>
 
 using Eigen::MatrixXd;
 using Eigen::Vector3d;
@@ -19,7 +21,12 @@ void main()
 	Vector3d vertical(0.0, 2.0, 0.0);
 	Vector3d origin(0.0, 0.0, 0.0);
 
-	for (int rowIdx = 0; rowIdx < ny; rowIdx++)
+	sphere s1 = sphere(Vector3d(0, 0, -1), 0.5);
+	sphere s2 = sphere(Vector3d(0, -100.5, -1), 100);
+	list<hittable*> objList = { &s1, &s2 };
+	hittable_list world = hittable_list(objList, objList.size());
+
+	for (int rowIdx = ny - 1; rowIdx >= 0; rowIdx--)
 	{
 		for (int columnIdx = 0; columnIdx < nx; columnIdx++)
 		{
@@ -33,7 +40,7 @@ void main()
 			// that they are in the world coordinate.
 			ray r(origin, lower_left_corner + u * horizontal + v * vertical);
 
-			Vector3d col = color(r);
+			Vector3d col = color(r, &world);
 
 			int ir = int(255.99 * col(0));
 			int ig = int(255.99 * col(1));
