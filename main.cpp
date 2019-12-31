@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+#include <random>
 #include "ray.h"
 #include "hittable.h"
 #include <list>
@@ -13,7 +14,11 @@ using namespace std;
 
 inline double random_double()
 {
-	return rand() / (RAND_MAX + 1.0);
+	// return rand() / (RAND_MAX + 1.0);
+	random_device rd;
+	mt19937 gen(rd());
+	uniform_real_distribution<> dis(0.0, 1.0);
+	return dis(gen);
 }
 
 void main()
