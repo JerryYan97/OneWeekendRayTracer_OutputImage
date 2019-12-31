@@ -2,7 +2,6 @@
 #include <fstream>
 #include "ray.h"
 
-//***//
 using Eigen::MatrixXd;
 using Eigen::Vector3d;
 using namespace std;
@@ -24,8 +23,14 @@ void main()
 	{
 		for (int columnIdx = 0; columnIdx < nx; columnIdx++)
 		{
+			// We create a ray for every pixels of the image.
+			// Transform pixel coordinate to uv coordinate.
 			float u = float(columnIdx) / float(nx);
 			float v = float(rowIdx) / float(ny);
+			// Transform uv coordinate to an easy world coordinate,
+			// and then create a ray for it.
+			// We can conclude from the data format of origin and pointing place
+			// that they are in the world coordinate.
 			ray r(origin, lower_left_corner + u * horizontal + v * vertical);
 
 			Vector3d col = color(r);
