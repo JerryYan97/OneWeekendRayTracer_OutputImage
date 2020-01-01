@@ -1,3 +1,4 @@
-﻿  main.cpp
-c:\jiaruiyan\master degree projects\oneweekendraytracer\outputimage\main.cpp(25): warning C4326: return type of 'main' should be 'int' instead of 'void'
+﻿  ray.cpp
+c:\jiaruiyan\master degree projects\oneweekendraytracer\outputimage\ray.cpp(23): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\jiaruiyan\master degree projects\oneweekendraytracer\outputimage\ray.cpp(31): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   OutputImage.vcxproj -> C:\JiaruiYan\Master Degree Projects\OneWeekendRaytracer\OutputImage\Debug\OutputImage.exe

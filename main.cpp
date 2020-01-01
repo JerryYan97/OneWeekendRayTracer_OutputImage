@@ -1,25 +1,13 @@
 #include <iostream>
 #include <fstream>
-#include <cstdlib>
-#include <random>
-#include "ray.h"
-#include "hittable.h"
 #include <list>
 #include "camera.h"
+#include "ray.h"
+#include "hittable.h"
+#include "mRandom.h"
 
-
-using Eigen::MatrixXd;
-using Eigen::Vector3d;
 using namespace std;
-
-inline double random_double()
-{
-	// return rand() / (RAND_MAX + 1.0);
-	random_device rd;
-	mt19937 gen(rd());
-	uniform_real_distribution<> dis(0.0, 1.0);
-	return dis(gen);
-}
+using namespace Eigen;
 
 void main()
 {
@@ -65,6 +53,7 @@ void main()
 				col += color(r, &world);
 			}
 			col /= float(ns);
+			col = Vector3d(sqrt(col(0)), sqrt(col(1)), sqrt(col(2)));
 
 			int ir = int(255.99 * col(0));
 			int ig = int(255.99 * col(1));
