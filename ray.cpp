@@ -48,3 +48,20 @@ Vector3d reflect(const Vector3d& v, const Vector3d& n)
 {
 	return v - 2 * v.dot(n) * n;
 }
+
+bool refract(const Vector3d& v, const Vector3d& n, float ni_over_nt, Vector3d& refracted)
+{
+	Vector3d uv = v.normalized();
+	float dt = uv.dot(n);
+	float discriminant = 1.0 - ni_over_nt * ni_over_nt * (1 - dt * dt);
+	if (discriminant > 0)
+	{
+		refracted = ni_over_nt * (uv - n * dt) - n * sqrt(discriminant);
+		// refracted = ni_over_nt * sqrt(1 - dt * dt) * (uv + n * dt).normalized() - n * sqrt(discriminant);
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}

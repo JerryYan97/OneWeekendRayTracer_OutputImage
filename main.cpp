@@ -24,10 +24,10 @@ void main()
 	Vector3d vertical(0.0, 2.0, 0.0);
 	Vector3d origin(0.0, 0.0, 0.0);
 	
-	lambertian matA = lambertian(Vector3d(0.8, 0.3, 0.3));
-	lambertian matB = lambertian(Vector3d(0.8, 0.8, 1.0));
-	metal matC = metal(Vector3d(0.8, 0.6, 0.2), 1.0);
-	metal matD = metal(Vector3d(0.8, 0.8, 0.8), 0.3);
+	lambertian matA = lambertian(Vector3d(0.1, 0.2, 0.5));
+	lambertian matB = lambertian(Vector3d(0.8, 0.8, 0.0));
+	metal matC = metal(Vector3d(0.8, 0.6, 0.2), 0.0);
+	dielectric matD = dielectric(1.5);
 
 	sphere s1 = sphere(Vector3d(0, 0, -1), 0.5, &matA);
 	sphere s2 = sphere(Vector3d(0, -100.5, -1), 100, &matB);

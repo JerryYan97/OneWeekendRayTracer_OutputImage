@@ -24,3 +24,4 @@ public:
 Vector3d color(const ray& r, hittable *world, int depth);
 Eigen::Vector3d random_in_unit_sphere();
 Vector3d reflect(const Vector3d& v, const Vector3d& n);
+bool refract(const Vector3d& v, const Vector3d& n, float ni_over_nt, Vector3d& refracted);

@@ -39,3 +39,11 @@ public:
 	}
 	virtual bool scatter(const ray& r_in, const hit_record& rec, Vector3d& attenuation, ray& scattered) const;
 };
+
+class dielectric : public Material
+{
+public:
+	float ref_idx;
+	dielectric(float ri) : ref_idx(ri){}
+	virtual bool scatter(const ray& r_in, const hit_record& rec, Vector3d& attenuation, ray& scattered) const;
+};
