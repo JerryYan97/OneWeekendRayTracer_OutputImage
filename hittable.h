@@ -1,6 +1,8 @@
 #pragma once
 #include "ray.h"
 #include <list>
+
+class Material;
 using Eigen::Vector3d;
 
 struct hit_record
@@ -8,6 +10,7 @@ struct hit_record
 	float t;
 	Vector3d p;
 	Vector3d normal;
+	Material *mat_ptr;
 };
 
 class hittable
@@ -21,13 +24,15 @@ class sphere : public hittable
 public:
 	Vector3d center;
 	float radius;
+	Material *mat_ptr;
 
 	sphere(){}
-	sphere(Vector3d cen, float r)
-		: center(cen), radius(r)
+	sphere(Vector3d cen, float r, Material* m)
+		: center(cen), radius(r), mat_ptr(m)
 	{};
 
 	virtual bool hit(const ray& r, float tmin, float tmax, hit_record& rec) const;
+	
 };
 
 class hittable_list : public hittable

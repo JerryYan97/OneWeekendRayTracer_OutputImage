@@ -5,6 +5,7 @@
 #include "ray.h"
 #include "hittable.h"
 #include "mRandom.h"
+#include "Material.h"
 
 using namespace std;
 using namespace Eigen;
@@ -22,10 +23,17 @@ void main()
 	Vector3d horizontal(4.0, 0.0, 0.0);
 	Vector3d vertical(0.0, 2.0, 0.0);
 	Vector3d origin(0.0, 0.0, 0.0);
+	
+	lambertian matA = lambertian(Vector3d(0.8, 0.3, 0.3));
+	lambertian matB = lambertian(Vector3d(0.8, 0.8, 1.0));
+	metal matC = metal(Vector3d(0.8, 0.6, 0.2), 1.0);
+	metal matD = metal(Vector3d(0.8, 0.8, 0.8), 0.3);
 
-	sphere s1 = sphere(Vector3d(0, 0, -1), 0.5);
-	sphere s2 = sphere(Vector3d(0, -100.5, -1), 100);
-	list<hittable*> objList = { &s1, &s2 };
+	sphere s1 = sphere(Vector3d(0, 0, -1), 0.5, &matA);
+	sphere s2 = sphere(Vector3d(0, -100.5, -1), 100, &matB);
+	sphere s3 = sphere(Vector3d(1, 0, -1), 0.5, &matC);
+	sphere s4 = sphere(Vector3d(-1, 0, -1), 0.5, &matD);
+	list<hittable*> objList = { &s1, &s2, &s3, &s4};
 	hittable_list world = hittable_list(objList, objList.size());
 	camera cam;
 
@@ -50,7 +58,7 @@ void main()
 				float u = float(columnIdx + random_double()) / float(nx);
 				float v = float(rowIdx + random_double()) / float(ny);
 				ray r = cam.get_ray(u, v);
-				col += color(r, &world);
+				col += color(r, &world, 0);
 			}
 			col /= float(ns);
 			col = Vector3d(sqrt(col(0)), sqrt(col(1)), sqrt(col(2)));

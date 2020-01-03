@@ -1,6 +1,7 @@
 #include "ray.h"
 #include "hittable.h"
 #include "mRandom.h"
+#include "Material.h"
 #include <iostream>
 #include <float.h>
 
@@ -14,7 +15,7 @@ Eigen::Vector3d random_in_unit_sphere()
 }
 
 
-Vector3d color(const ray& r, hittable *world) 
+Vector3d color(const ray& r, hittable *world, int depth) 
 {
 	hit_record rec;
 	rec.normal = Vector3d(1, 0, 0);
@@ -22,7 +23,17 @@ Vector3d color(const ray& r, hittable *world)
 	rec.t = 0;
 	if (world->hit(r, 0.001, FLT_MAX, rec))
 	{
-		return 0.5 * color(ray(rec.p, rec.normal + random_in_unit_sphere()), world);
+		ray scattered;
+		Vector3d attenuation;
+		if (depth < 50 && rec.mat_ptr->scatter(r, rec, attenuation, scattered))
+		{
+			return attenuation.cwiseProduct(color(scattered, world, depth + 1));
+		}
+		else
+		{
+			return Vector3d(0, 0, 0);
+		}
+		// return 0.5 * color(ray(rec.p, rec.normal + random_in_unit_sphere()), world);
 	}
 	else
 	{
@@ -31,4 +42,9 @@ Vector3d color(const ray& r, hittable *world)
 		float t = 0.5 * (unit_direction.y() + 1.0);
 		return (1.0 - t) * Vector3d(1.0, 1.0, 1.0) + t * Vector3d(0.5, 0.7, 1.0);
 	}	
+}
+
+Vector3d reflect(const Vector3d& v, const Vector3d& n)
+{
+	return v - 2 * v.dot(n) * n;
 }

@@ -21,4 +21,6 @@ public:
 	Vector3d point_at_parameter(float t) const { return A + t * B; }
 };
 
-Vector3d color(const ray& r, hittable *world);
+Vector3d color(const ray& r, hittable *world, int depth);
+Eigen::Vector3d random_in_unit_sphere();
+Vector3d reflect(const Vector3d& v, const Vector3d& n);
