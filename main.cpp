@@ -35,7 +35,7 @@ void main()
 	sphere s4 = sphere(Vector3d(-1, 0, -1), 0.5, &matD);
 	list<hittable*> objList = { &s1, &s2, &s3, &s4};
 	hittable_list world = hittable_list(objList, objList.size());
-	camera cam;
+	camera cam(Vector3d(-2, 2, 1), Vector3d(0, 0, -1), Vector3d(0, 1, 0), 90, float(nx) / float(ny));
 
 	for (int rowIdx = ny - 1; rowIdx >= 0; rowIdx--)
 	{
