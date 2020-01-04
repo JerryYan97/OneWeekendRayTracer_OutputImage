@@ -10,6 +10,43 @@
 using namespace std;
 using namespace Eigen;
 
+void random_scene(list<hittable*>& iList)
+{
+	int n = 500;
+	iList.push_back(new sphere(Vector3d(0, -1000, 0), 1000, new lambertian(Vector3d(0.5, 0.5, 0.5))));
+	for (int a = -11; a < 11; a++)
+	{
+		for (int b = -11; b < 11; b++)
+		{
+			float choose_mat = random_double();
+			Vector3d center(a + 0.9 * random_double(), 0.2, b + 0.9 * random_double());
+			if ((center - Vector3d(4, 0.2, 0)).norm() > 0.9)
+			{
+				if (choose_mat < 0.8)
+				{
+					iList.push_back(new sphere(center, 0.2, new lambertian(Vector3d(random_double() * random_double(),
+																					random_double() * random_double(),
+																					random_double() * random_double()))));
+				}
+				else if (choose_mat < 0.95)
+				{
+					iList.push_back(new sphere(center, 0.2, new metal(Vector3d(0.5 * (1 + random_double()),
+						0.5 * (1 + random_double()),
+						0.5 * (1 + random_double())),
+						0.5 * random_double())));
+				}
+				else
+				{
+					iList.push_back(new sphere(center, 0.2, new dielectric(1.5)));
+				}
+			}
+		}
+	}
+	iList.push_back(new sphere(Vector3d(0, 1, 0), 1.0, new dielectric(1.5)));
+	iList.push_back(new sphere(Vector3d(-4, 1, 0), 1.0, new lambertian(Vector3d(0.4, 0.2, 0.1))));
+	iList.push_back(new sphere(Vector3d(4, 1, 0), 1.0, new metal(Vector3d(0.7, 0.6, 0.5), 0.0)));
+}
+
 void main()
 {
 	std::ofstream outputFile;
@@ -24,7 +61,7 @@ void main()
 	Vector3d vertical(0.0, 2.0, 0.0);
 	Vector3d origin(0.0, 0.0, 0.0);
 	
-	lambertian matA = lambertian(Vector3d(0.1, 0.2, 0.5));
+	/*lambertian matA = lambertian(Vector3d(0.1, 0.2, 0.5));
 	lambertian matB = lambertian(Vector3d(0.8, 0.8, 0.0));
 	metal matC = metal(Vector3d(0.8, 0.6, 0.2), 0.0);
 	dielectric matD = dielectric(1.5);
@@ -33,9 +70,19 @@ void main()
 	sphere s2 = sphere(Vector3d(0, -100.5, -1), 100, &matB);
 	sphere s3 = sphere(Vector3d(1, 0, -1), 0.5, &matC);
 	sphere s4 = sphere(Vector3d(-1, 0, -1), 0.5, &matD);
-	list<hittable*> objList = { &s1, &s2, &s3, &s4};
+	list<hittable*> objList = { &s1, &s2, &s3, &s4};*/
+	list<hittable*> objList;
+	random_scene(objList);
 	hittable_list world = hittable_list(objList, objList.size());
-	camera cam(Vector3d(-2, 2, 1), Vector3d(0, 0, -1), Vector3d(0, 1, 0), 90, float(nx) / float(ny));
+
+	Vector3d lookfrom(3, 3, 2);
+	Vector3d lookat(0, 0, -1);
+	float dist_to_focus = (lookfrom - lookat).norm();
+	float aperture = 0.5;
+	// float aperture = 0.0;
+	camera cam(lookfrom, lookat, Vector3d(0, 1, 0), 20, float(nx) / float(ny), aperture, dist_to_focus);
+
+	// camera cam(Vector3d(-2, 2, 1), Vector3d(0, 0, -1), Vector3d(0, 1, 0), 90, float(nx) / float(ny));
 
 	for (int rowIdx = ny - 1; rowIdx >= 0; rowIdx--)
 	{
